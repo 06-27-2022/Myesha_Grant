@@ -13,11 +13,11 @@ public class CalcChallenge{
 		arr[4] = 79;
 		
 		//print outcome
-		System.out.println("Math: " +arr[0]);
-		System.out.println("English: " +arr[1]);
-		System.out.println("Science: " +arr[2]);
-		System.out.println("History: " +arr[3]);
-		System.out.println("Art: " +arr[4]);
+		System.out.println("Math: A" +arr[0]);
+		System.out.println("English: B" +arr[1]);
+		System.out.println("Science: D" +arr[2]);
+		System.out.println("History: F" +arr[3]);
+		System.out.println("Art: C" +arr[4]);
 		
 	}
 		
