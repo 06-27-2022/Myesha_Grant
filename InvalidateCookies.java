@@ -2,45 +2,36 @@ package com.expense.web;
 
 import java.io.IOException;
 import javax.servlet.ServletException;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.registration.repository.RevUserImpl;
-
 /**
- * Servlet implementation class ReimbursementTicket
+ * Servlet implementation class InvalidateCookies
  */
-public class ReimbursementTicket extends HttpServlet {
+public class InvalidateCookies extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     
-    public ReimbursementTicket() {
+    public InvalidateCookies() {
         super();
+        // TODO Auto-generated constructor stub
     }
 
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		request.getInputStream();
-		
-		//constructor
-		new ObjectMapper();
-		new RevUserImpl();
-			
-				ReimbursementTicket clientTicket = null;
-				ReimbursementTicket.save(clientTicket);
+		Cookie[] cookieJar = request.getCookies();
+		for(Cookie cookie : cookieJar) {
+			if(cookie.getName().equals("authenticated")) {
+				cookie.setMaxAge(0);//deletes cookie
+			}
+		}
 	}
 
 	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		doGet(request, response);
-	}
-
-
-	public static void save(ReimbursementTicket clientTicket) {
-		// TODO Auto-generated method stub
-		
 	}
 
 }

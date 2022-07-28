@@ -6,37 +6,36 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.fasterxml.jackson.core.JsonParser;
+import com.expense.model.RevUser;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.registration.repository.RevUserImpl;
 import com.registration.repository.RevUserRepo;
 
 /**
- * Servlet implementation class TicketStatus
+ * Servlet will intercept HTTP request, allow to receive user data
  */
-public class TicketStatus extends HttpServlet {
+public class RevUserPostServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	private JsonParser TicketStatus;
        
-    
-    public TicketStatus() {
-        super();
+ public RevUserPostServlet() {
+        super();//abstract class
     }
 
 	
-	@SuppressWarnings("unused")
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		request.getInputStream();
+
 		
+//		String requestBodyText = new String(request.getInputStream());
+		
+		//Deserialize into a java object using Jackson's Object Mapper
 		ObjectMapper objectMapper = new ObjectMapper();
-//		JsonParser  TicketStatus = null;
-		ReimbursementTicket reimbursementTicket = objectMapper.readValue(TicketStatus, ReimbursementTicket.class);
+		RevUser revuser = objectMapper.readValue(request.getInputStream(), RevUser.class);
 				
-				
+				@SuppressWarnings("unused")
 				RevUserRepo revUserRepo = new RevUserImpl();
 			
-				ReimbursementTicket clientTicket = null;
-				ReimbursementTicket.save(clientTicket);	}
+				RevUserRepo.save(revuser);
+	}
 
 	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

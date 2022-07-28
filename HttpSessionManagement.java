@@ -5,42 +5,40 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.registration.repository.RevUserImpl;
+import javax.servlet.http.HttpSession;
 
 /**
- * Servlet implementation class ReimbursementTicket
+ * Servlet implementation class HttpSessionManagement
  */
-public class ReimbursementTicket extends HttpServlet {
+public class HttpSessionManagement extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
-    
-    public ReimbursementTicket() {
+  
+    public HttpSessionManagement() {
         super();
     }
 
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		request.getInputStream();
 		
-		//constructor
-		new ObjectMapper();
-		new RevUserImpl();
+		String username = request.getParameter("username");
+		String password = request.getParameter("password");
+		
+		if(username.equals("Myesha") && password.equals("Bre082")) {
 			
-				ReimbursementTicket clientTicket = null;
-				ReimbursementTicket.save(clientTicket);
+			@SuppressWarnings("unused")
+			HttpSession session = request.getSession();
+			
+		}else {
+			response.setStatus(401); //unauthorized
+		}
+		
 	}
 
 	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
 		doGet(request, response);
-	}
-
-
-	public static void save(ReimbursementTicket clientTicket) {
-		// TODO Auto-generated method stub
-		
 	}
 
 }
